@@ -17,12 +17,14 @@ public class Ricerca {
 		
 		parola=parola.toUpperCase() ;
 		
+		
+		// itero la stringa e prendo tutti i suoi caratteri
 		List<Character> disponibili = new ArrayList<>() ;
 		for(int i=0; i<parola.length(); i++) {
 			disponibili.add(parola.charAt(i)) ;
 		}
 		
-		// avvia la ricorsione
+		// avvia la ricorsione (inizializzo la ricorsione)
 		cerca("", 0, disponibili) ; 
 		
 		return this.soluzione ;
@@ -36,15 +38,17 @@ public class Ricerca {
 	 * @param disponibili insieme delle lettere non ancora utilizzate
 	 */
 	private void cerca( String parziale, int livello, List<Character> disponibili) {
+		
+		// 1.  CASO TERMINALE (non mi sono rimaste lettere)
 		if(disponibili.size()==0) { // livello==parola.length()
-			// caso terminale
+			
 			
 			// if(parziale è nel dizionario)
 			// if( parziale non è presente nella soluzione )
 			this.soluzione.add(parziale) ;
 		}
 		
-		// caso normale
+		// 2. CASO NORMALE
 		// provare ad aggiungere a 'parziale' tutti i caratteri presenti tra
 		// i 'disponibili'
 		for(Character ch: disponibili) {
@@ -62,11 +66,11 @@ public class Ricerca {
 }
 
 /*
-Dato di partenza: parola da anagrammare, di lunghezza N
-Soluzione parziale: una parte dell'anagramma già costruito (i primi caratteri).
-Livello: numero di lettere di cui è composta la soluzione parziale.
-Soluzione finale: soluzione di lunghezza N -> caso terminale
-Caso terminale: salvare la soluzione trovate
-Generazione delle nuove soluzioni: provare a aggiungere una lettera, scegliendola
+DATO DI PARTENZA: parola da anagrammare, di lunghezza N
+SOLUZIONE PARZIALE: una parte dell'anagramma già costruito (i primi caratteri).
+LIVELLO: numero di lettere di cui è composta la soluzione parziale.
+SOLUZIONE FINALE: soluzione di lunghezza N -> caso terminale
+CASO TERMINALE: salvare la soluzione trovate
+GENERAZIONE NUOVE SOLUZIONI: provare a aggiungere una lettera, scegliendola
 tra quelle che non sono ancora state utilizzate (nella soluzione parziale).
 */
